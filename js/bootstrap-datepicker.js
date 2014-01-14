@@ -37,7 +37,7 @@
 		};
 	}
 	function datesEqual(date1, date2){
-		if (!date1 || !date2 || !(date2 instanceof Date) || !(date2 instanceof Date)) {
+		if (!(date2 instanceof Date && date2 instanceof Date)) {
 			return;
 		}
 		return date1.getFullYear() === date2.getFullYear() &&
