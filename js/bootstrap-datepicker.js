@@ -36,6 +36,14 @@
 			return this[method].apply(this, arguments);
 		};
 	}
+	function datesEqual(date1, date2){
+		if (!(date2 instanceof Date && date2 instanceof Date)) {
+			return;
+		}
+		return date1.getFullYear() === date2.getFullYear() &&
+			date1.getMonth() == date2.getMonth() &&
+			date1.getDate() == date2.getDate()
+	}
 
 	var DateArray = (function(){
 		var extras = {
@@ -45,10 +53,11 @@
 			contains: function(d){
 				// Array.indexOf is not cross-browser;
 				// $.inArray doesn't work with Dates
-				var val = d && d.valueOf();
-				for (var i=0, l=this.length; i < l; i++)
-					if (this[i].valueOf() === val)
+				for (var i=0, l=this.length; i < l; i++){
+					if (datesEqual(this[i], d)){
 						return i;
+					}
+				}
 				return -1;
 			},
 			remove: function(i){
